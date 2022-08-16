@@ -230,6 +230,14 @@ export interface IAvtaleGiroFilter {
     from: number;
     to: number;
   };
+  draftdate: {
+    from: Date | null;
+    to: Date | null;
+  };
+  chargedate: {
+    from: Date | null;
+    to: Date | null;
+  };
   KID?: string;
   donor?: string;
   statuses?: Array<string>;

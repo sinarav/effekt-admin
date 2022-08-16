@@ -10,7 +10,8 @@ export const SET_AVTALEGIRO_FILTER_KID = "SET_AVTALEGIRO_FILTER_KID"
 export const SET_AVTALEGIRO_FILTER_DONOR = "SET_AVTALEGIRO_FILTER_DONOR"
 export const SET_AVTALEGIRO_FILTER_ACTIVE = "SET_AVTALEGIRO_FILTER_ACTIVE"
 export const CLEAR_CURRENT_AVTALEGIRO = "CLEAR_CURRENT_DONATION"
-
+export const SET_AVTALEGIRO_FILTER_DRAFTDATE_RANGE = "SET_AVTALEGIRO_FILTER_DRAFTDATE_RANGE";
+export const SET_AVTALEGIRO_FILTER_CHARGEDATE_RANGE = "SET_AVTALEGIRO_FILTER_CHARGEDATE_RANGE";
 const actionCreator = actionCreatorFactory();
 
 interface IFetchAvtaleGirosResults {
@@ -55,6 +56,16 @@ export const fetchAvtaleGiroRecievedByDateAction = actionCreator.async<IFetchAvt
 export const fetchAvtaleGiroExpectedByDateAction = actionCreator.async<IFetchAvtaleGiroDateValidationParams, Array<IAvtaleGiro>, Error>('FETCH_AVTALEGIRO_EXPECTED_BY_DATE');
 export const fetchAvtaleGiroHistogramAction = actionCreator.async<IFetchAvtaleGiroHistogramActionParams, Array<IHistogramBucket>, Error>('FETCH_AVTALEGIRO_HISTOGRAM');
 
+export interface IActionRangeParams<T> {
+  from: T;
+  to: T;
+}
+
+export interface IFilterAction<T> {
+  type: string;
+  payload: T;
+}
+
 export const setAvtaleGiroPagination = (pagination: IPagination) => {
   return {
     type: SET_AVTALEGIRO_PAGINATION,
@@ -71,6 +82,32 @@ export const setAvtalegiroFilterAmount = (amountRange: AmountRange) => {
   return {
     type: SET_AVTALEGIRO_FILTER_AMOUNT,
     payload: amountRange,
+  };
+};
+
+export const setAvtalegiroFilterDraftDateRange = (
+  from: Date | null,
+  to: Date | null
+): IFilterAction<IActionRangeParams<Date | null>> => {
+  return {
+    type: SET_AVTALEGIRO_FILTER_DRAFTDATE_RANGE,
+    payload: {
+      from,
+      to,
+    },
+  };
+};
+
+export const setAvtalegiroFilterChargeDateRange = (
+  from: Date | null,
+  to: Date | null
+): IFilterAction<IActionRangeParams<Date | null>> => {
+  return {
+    type: SET_AVTALEGIRO_FILTER_CHARGEDATE_RANGE,
+    payload: {
+      from,
+      to,
+    },
   };
 };
 

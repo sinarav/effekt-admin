@@ -10,6 +10,8 @@ import {
   setAvtalegiroFilterAmount,
   setAvtaleGiroFilterDonor,
   setAvtaleGiroFilterKID,
+  setAvtalegiroFilterDraftDateRange,
+  setAvtalegiroFilterChargeDateRange,
 } from '../../../../store/avtalegiro/avtalegiro.actions';
 import {
   EffektCheckChoice,
@@ -21,6 +23,8 @@ import {
   FilterContent,
   FilterHeader,
   FilterGroup,
+  FilterDateRange,
+  FilterDateRangeWrapper,
   FilterGroupHeader,
   FilterInput,
 } from '../../../style/elements/filters.component.style';
@@ -39,6 +43,8 @@ export const AvtaleGiroFilter: React.FunctionComponent = () => {
   const histogram = useSelector((state: AppState) => state.avtaleGiroAgreements.histogram);
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
   const amountRange = filter.amount;
+  const draftdateRange = useSelector((state: AppState) => state.avtaleGiroAgreements.filter.draftdate);
+  const chargedateRange = useSelector((state: AppState) => state.avtaleGiroAgreements.filter.chargedate);
   const KID = filter.KID;
   const donor = filter.donor;
   const statuses = filter.statuses;
@@ -87,6 +93,46 @@ export const AvtaleGiroFilter: React.FunctionComponent = () => {
                 );
               }}
             ></HistogramInputComponent>
+          </FilterGroup>
+
+          <FilterGroup>
+            <FilterGroupHeader>Draft Date</FilterGroupHeader>
+            <FilterDateRangeWrapper>
+            <FilterDateRange
+              from={draftdateRange.from}
+              to={draftdateRange.to}
+              onChangeFrom={(date) => {
+                dispatch(setAvtalegiroFilterDraftDateRange(date, draftdateRange.to));
+              }}
+              onChangeTo={(date) => {
+                dispatch(setAvtalegiroFilterDraftDateRange(draftdateRange.from, date));
+              }}
+              onChangeRange={(to, from) => {
+                dispatch(setAvtalegiroFilterDraftDateRange(to, from));
+              }}
+              inverted
+            ></FilterDateRange>
+          </FilterDateRangeWrapper>
+          </FilterGroup>
+
+          <FilterGroup>
+            <FilterGroupHeader>Charge Date</FilterGroupHeader>
+            <FilterDateRangeWrapper>
+            <FilterDateRange
+              from={draftdateRange.from}
+              to={draftdateRange.to}
+              onChangeFrom={(date) => {
+                dispatch(setAvtalegiroFilterChargeDateRange(date, chargedateRange.to));
+              }}
+              onChangeTo={(date) => {
+                dispatch(setAvtalegiroFilterChargeDateRange(chargedateRange.from, date));
+              }}
+              onChangeRange={(to, from) => {
+                dispatch(setAvtalegiroFilterChargeDateRange(to, from));
+              }}
+              inverted
+            ></FilterDateRange>
+          </FilterDateRangeWrapper>
           </FilterGroup>
 
           <FilterGroup>

@@ -17,6 +17,8 @@ import {
   SET_AVTALEGIRO_FILTER_DONOR,
   SET_AVTALEGIRO_FILTER_KID,
   SET_AVTALEGIRO_PAGINATION,
+  SET_AVTALEGIRO_FILTER_DRAFTDATE_RANGE,
+  SET_AVTALEGIRO_FILTER_CHARGEDATE_RANGE,
 } from './avtalegiro.actions';
 
 const defaultAvtaleGiroAgreementState: AvtaleGiroAgreementsState = {
@@ -35,6 +37,14 @@ const defaultAvtaleGiroAgreementState: AvtaleGiroAgreementsState = {
     amount: {
       from: 0,
       to: 1000000,
+    },
+    draftdate: {
+      from: null,
+      to: null,
+    },
+    chargedate: {
+      from: null,
+      to: null,
     },
     KID: '',
     donor: '',
@@ -225,6 +235,18 @@ export const avtaleGiroReducer = (
         ...state,
         pagination: { ...state.pagination, page: 0 },
         filter: { ...state.filter, amount: action.payload },
+      };
+    case SET_AVTALEGIRO_FILTER_DRAFTDATE_RANGE:
+      return {
+        ...state,
+        pagination: { ...state.pagination, page: 0 },
+        filter: { ...state.filter, draftdate: action.payload },
+      };
+    case SET_AVTALEGIRO_FILTER_CHARGEDATE_RANGE:
+      return {
+        ...state,
+        pagination: { ...state.pagination, page: 0 },
+        filter: { ...state.filter, chargedate: action.payload },
       };
     case SET_AVTALEGIRO_FILTER_DONOR:
       return {

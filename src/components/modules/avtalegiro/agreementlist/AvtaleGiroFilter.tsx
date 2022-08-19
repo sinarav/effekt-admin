@@ -43,8 +43,8 @@ export const AvtaleGiroFilter: React.FunctionComponent = () => {
   const histogram = useSelector((state: AppState) => state.avtaleGiroAgreements.histogram);
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
   const amountRange = filter.amount;
-  const draftdateRange = useSelector((state: AppState) => state.avtaleGiroAgreements.filter.draftdate);
-  const chargedateRange = useSelector((state: AppState) => state.avtaleGiroAgreements.filter.chargedate);
+  const draftdateRange = useSelector((state: AppState) => state.avtaleGiroAgreements.filter.created);
+  const chargedateRange = useSelector((state: AppState) => state.avtaleGiroAgreements.filter.payment_date);
   const KID = filter.KID;
   const donor = filter.donor;
   const statuses = filter.statuses;
@@ -109,26 +109,6 @@ export const AvtaleGiroFilter: React.FunctionComponent = () => {
               }}
               onChangeRange={(to, from) => {
                 dispatch(setAvtalegiroFilterDraftDateRange(to, from));
-              }}
-              inverted
-            ></FilterDateRange>
-          </FilterDateRangeWrapper>
-          </FilterGroup>
-
-          <FilterGroup>
-            <FilterGroupHeader>Charge Date</FilterGroupHeader>
-            <FilterDateRangeWrapper>
-            <FilterDateRange
-              from={draftdateRange.from}
-              to={draftdateRange.to}
-              onChangeFrom={(date) => {
-                dispatch(setAvtalegiroFilterChargeDateRange(date, chargedateRange.to));
-              }}
-              onChangeTo={(date) => {
-                dispatch(setAvtalegiroFilterChargeDateRange(chargedateRange.from, date));
-              }}
-              onChangeRange={(to, from) => {
-                dispatch(setAvtalegiroFilterChargeDateRange(to, from));
               }}
               inverted
             ></FilterDateRange>

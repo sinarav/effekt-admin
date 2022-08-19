@@ -3,10 +3,11 @@ import React from 'react';
 import { DateTime } from "luxon";
 import { KeyInfoWrapper, KeyInfoGroup, KeyInfoHeader, KeyInfoSum, KeyInfoTimestamp, KeyInfoValue } from '../../../style/elements/keyinfo/keyinfo.style';
 import { shortDate } from '../../../../util/formatting';
+import { shortDate2 } from '../../../../util/formatting';
 
 interface AgreementInfo {
     amount: number;
-    created: string;
+    created: Date;
     cancelled: string;
     payment_date: number;
     active: number;
@@ -17,7 +18,7 @@ interface IProps {
 }
 
 export const AvtaleGiroKeyInfo: React.FunctionComponent<IProps> = ({ agreement }) => {
-    const formattedTimestamp = shortDate(DateTime.fromISO(agreement.created))
+    const formattedTimestamp = shortDate2(agreement.created)
     const chargeDay = agreement.payment_date === 0 ? "End of month" : agreement.payment_date
     let formattedStatus = agreement.active ? "Active" : "Inactive"
     if (agreement.cancelled) formattedStatus = "Cancelled"

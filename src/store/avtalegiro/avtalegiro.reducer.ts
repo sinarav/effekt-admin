@@ -1,4 +1,5 @@
 import Decimal from 'decimal.js';
+import { DateTime } from 'luxon';
 import { isType } from 'typescript-fsa';
 import { AvtaleGiroAgreementsState } from '../../models/state';
 import { toastError } from '../../util/toasthelper';
@@ -38,14 +39,13 @@ const defaultAvtaleGiroAgreementState: AvtaleGiroAgreementsState = {
       from: 0,
       to: 1000000,
     },
-    draftdate: {
-      from: null,
-      to: null,
-    },
-    chargedate: {
-      from: null,
-      to: null,
-    },
+  created:{
+    from: null,
+    to: null,
+  },
+
+  payment_date: 0 ,
+
     KID: '',
     donor: '',
     statuses: [],
@@ -237,16 +237,17 @@ export const avtaleGiroReducer = (
         filter: { ...state.filter, amount: action.payload },
       };
     case SET_AVTALEGIRO_FILTER_DRAFTDATE_RANGE:
+      console.log(action.payload)
       return {
         ...state,
         pagination: { ...state.pagination, page: 0 },
-        filter: { ...state.filter, draftdate: action.payload },
+        filter: { ...state.filter, created: action.payload },
       };
     case SET_AVTALEGIRO_FILTER_CHARGEDATE_RANGE:
       return {
         ...state,
         pagination: { ...state.pagination, page: 0 },
-        filter: { ...state.filter, chargedate: action.payload },
+        filter: { ...state.filter, payment_date: action.payload },
       };
     case SET_AVTALEGIRO_FILTER_DONOR:
       return {

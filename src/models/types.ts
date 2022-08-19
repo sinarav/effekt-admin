@@ -213,7 +213,7 @@ export interface IVippsAgreementChargeFilter {
 
 export interface IAvtaleGiro {
   id: string;
-  created: string;
+  created: Date;
   last_updated: string;
   active: number;
   amount: number;
@@ -230,14 +230,11 @@ export interface IAvtaleGiroFilter {
     from: number;
     to: number;
   };
-  draftdate: {
+  created: {
     from: Date | null;
     to: Date | null;
   };
-  chargedate: {
-    from: Date | null;
-    to: Date | null;
-  };
+  payment_date: number;
   KID?: string;
   donor?: string;
   statuses?: Array<string>;

@@ -11,7 +11,7 @@ import {
   setAvtaleGiroFilterDonor,
   setAvtaleGiroFilterKID,
   setAvtalegiroFilterDraftDateRange,
-  setAvtalegiroFilterChargeDateRange,
+  setAvtalegiroFilterChargeDayRange,
 } from '../../../../store/avtalegiro/avtalegiro.actions';
 import {
   EffektCheckChoice,
@@ -113,6 +113,33 @@ export const AvtaleGiroFilter: React.FunctionComponent = () => {
               inverted
             ></FilterDateRange>
           </FilterDateRangeWrapper>
+          </FilterGroup>
+
+          <FilterGroup>
+            <FilterGroupHeader>Charge Day</FilterGroupHeader>
+            <FilterInput
+              value={chargedateRange.from}
+              style={{ width: '50%' }}
+              placeholder={'Fuzzy search'}
+
+              onChange={(e: any) => {
+                dispatch(
+                  setAvtalegiroFilterChargeDayRange(e, chargedateRange.to)
+                );
+              }}
+              ></FilterInput>
+            <FilterInput
+              value={chargedateRange.to}
+              style={{ width: '30%' }}
+              placeholder={'Fuzzy search'}
+
+              onChange={(e: any) => {
+                dispatch(
+                  setAvtalegiroFilterChargeDayRange(chargedateRange.from , e)
+                );
+              }}
+              ></FilterInput>
+
           </FilterGroup>
 
           <FilterGroup>

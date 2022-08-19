@@ -39,12 +39,14 @@ const defaultAvtaleGiroAgreementState: AvtaleGiroAgreementsState = {
       from: 0,
       to: 1000000,
     },
-  created:{
+    created:{
     from: null,
     to: null,
-  },
-
-  payment_date: 0 ,
+    },
+    payment_date:  {
+      from: 0,
+      to: 31,
+    },
 
     KID: '',
     donor: '',

@@ -78,6 +78,11 @@ interface AmountRange {
   to: number;
 }
 
+interface ChargeDayRange{
+  from: number;
+  to: number;
+}
+
 export const setAvtalegiroFilterAmount = (amountRange: AmountRange) => {
   return {
     type: SET_AVTALEGIRO_FILTER_AMOUNT,
@@ -98,10 +103,10 @@ export const setAvtalegiroFilterDraftDateRange = (
   };
 };
 
-export const setAvtalegiroFilterChargeDateRange = (
-  from: Date | null,
-  to: Date | null
-): IFilterAction<IActionRangeParams<Date | null>> => {
+export const setAvtalegiroFilterChargeDayRange = (
+  from: number,
+  to: number
+) => {
   return {
     type: SET_AVTALEGIRO_FILTER_CHARGEDATE_RANGE,
     payload: {

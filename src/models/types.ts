@@ -234,7 +234,10 @@ export interface IAvtaleGiroFilter {
     from: Date | null;
     to: Date | null;
   };
-  payment_date: number;
+  payment_date: {
+    from: number;
+    to: number;
+  };
   KID?: string;
   donor?: string;
   statuses?: Array<string>;
